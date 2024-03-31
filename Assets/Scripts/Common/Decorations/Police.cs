@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Common.Decorations
+﻿namespace Common.Decorations
 {
     public class Police : Decoration {}
 }
