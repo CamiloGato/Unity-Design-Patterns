@@ -3,6 +3,7 @@ using Common.Configuration;
 using Common.Playable;
 using Patterns.Creation.Builder;
 using Patterns.Creation.Factory;
+using Patterns.Creation.Singleton;
 using UnityEngine;
 
 namespace Common
@@ -24,16 +25,11 @@ namespace Common
         [SerializeField] private Id addonCapeId;
         [SerializeField] private Id addonHatId;
         
-        private DecorationSpawner _decorationSpawner;
-        
-        private void Awake()
-        {
-            DecorationFactory decorationFactory = new DecorationFactory(decorationConfiguration);
-            _decorationSpawner = new DecorationSpawner(decorationFactory);
-        }
-
         private void Start()
         {
+            DecorationFactory decorationFactory = new DecorationFactory(decorationConfiguration);
+            DecorationSpawner.Instance.SetUpDecorationFactory(decorationFactory);
+            
             InvokeRepeating(nameof(Spawn), 3f, 3f);
             SpawnCar();
         }
@@ -56,7 +52,7 @@ namespace Common
 
         public void Spawn()
         {
-            _decorationSpawner.SpawnDecoration(decorationToSpawnId);
+            DecorationSpawner.Instance.SpawnDecoration(decorationToSpawnId);
         }
         
     }
