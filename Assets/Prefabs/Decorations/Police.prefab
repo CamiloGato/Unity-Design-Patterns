@@ -126,3 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: {fileID: 11400000, guid: 60b56615dca455f47a5b7a9d99e41e32, type: 2}
+  direction: {x: 1, y: 0}

@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b0d35a14ef345cdadfb2186a37c6c73, type: 3}
-  m_Name: Dove
+  m_Script: {fileID: 11500000, guid: 51c750982d1d4d7297b34c1000a5928f, type: 3}
+  m_Name: CarConfiguration
   m_EditorClassIdentifier: 
-  Value: Dove
+  chassis:
+  - {fileID: 3063889817986232637, guid: 7733878e671918f48bdc074acf86d2a5, type: 3}
+  tyres:
+  - {fileID: 1034682740224201101, guid: 601d1de52117858468965550d6f54bbc, type: 3}

@@ -11,7 +11,7 @@ namespace Common.Configuration
 
         public Decoration GetDecoration(Id id)
         {
-            return decorations.Find( (decoration) => decoration.id.value == id.value );
+            return decorations.Find( (decoration) => decoration.id == id );
         }
         
     }

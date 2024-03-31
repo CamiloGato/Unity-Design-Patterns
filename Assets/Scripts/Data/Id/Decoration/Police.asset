@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b0d35a14ef345cdadfb2186a37c6c73, type: 3}
   m_Name: Police
   m_EditorClassIdentifier: 
-  value: PoliceId
+  Value: Police

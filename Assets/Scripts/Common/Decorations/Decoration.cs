@@ -7,7 +7,8 @@ namespace Common.Decorations
     public abstract class Decoration : MonoBehaviour
     {
         public Id id;
-
+        public Vector2 direction;
+        
         private Rigidbody2D _rigidBody2D;
         
         private void Awake()
@@ -17,7 +18,7 @@ namespace Common.Decorations
 
         private void Start()
         {
-            _rigidBody2D.velocity = new Vector2(1, 0);
+            _rigidBody2D.velocity = direction;
         }
     }
 }

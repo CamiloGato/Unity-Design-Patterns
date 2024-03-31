@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b0d35a14ef345cdadfb2186a37c6c73, type: 3}
-  m_Name: Dove
+  m_Script: {fileID: 11500000, guid: 5710f7c4cfef4ae59ead4bd38aafb850, type: 3}
+  m_Name: AddonConfiguration
   m_EditorClassIdentifier: 
-  Value: Dove
+  addons:
+  - {fileID: 7332606264991418026, guid: f9e5dd34598cc064e9ecc29595638585, type: 3}
+  - {fileID: 7742491443094770572, guid: bdf3e9db8add28d42ad9d7f878a836fb, type: 3}
