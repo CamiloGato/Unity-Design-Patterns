@@ -4,6 +4,7 @@ using Common.Playable;
 using Patterns.Creation.Builder;
 using Patterns.Creation.Factory;
 using Patterns.Creation.Singleton;
+using Patterns.Structure.Adapter;
 using UnityEngine;
 
 namespace Common
@@ -24,6 +25,10 @@ namespace Common
         [SerializeField] private Id tyreId;
         [SerializeField] private Id addonCapeId;
         [SerializeField] private Id addonHatId;
+
+        [Header("Input")]
+        [SerializeField] private string horizontal;
+        [SerializeField] private string fire;
         
         private void Start()
         {
@@ -48,6 +53,15 @@ namespace Common
                 .WithChassis(chassis)
                 .WithTyre(tyre)
                 .Build();
+
+            GameObject playerContainer = Instantiate( new GameObject() );
+            playerContainer.name = "Player";
+            car.transform.SetParent(playerContainer.transform);
+            
+            Player player = playerContainer.AddComponent<Player>();
+            IInput input = new UnityInput(horizontal, fire);
+            player.SetComponents(input,car);
+            
         }
 
         public void Spawn()
