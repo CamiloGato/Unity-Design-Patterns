@@ -15,8 +15,9 @@ namespace Common
         [SerializeField] private DecorationConfiguration decorationConfiguration;
         [SerializeField] private AddonConfiguration addonConfiguration;
         [SerializeField] private CarConfiguration carConfiguration;
-        
+
         [Header("Spawns")]
+        [SerializeField] private float time;
         [SerializeField] private Id decorationToSpawnId;
 
         [Header("Spawn Car")]
@@ -33,9 +34,9 @@ namespace Common
         private void Start()
         {
             DecorationFactory decorationFactory = new DecorationFactory(decorationConfiguration);
-            DecorationSpawner.Instance.SetUpDecorationFactory(decorationFactory);
-            
-            InvokeRepeating(nameof(Spawn), 3f, 3f);
+            DecorationSpawner.Instance.SetUpDecorationFactory(decorationFactory, time, decorationToSpawnId);
+            DecorationSpawner.Instance.ChangeDecorationId(decorationToSpawnId);
+            DecorationSpawner.Instance.StartSpawn();
             SpawnCar();
         }
 
@@ -64,11 +65,6 @@ namespace Common
             IInput input = new UnityInput(horizontal, fire);
             player.SetComponents(input,car);
             
-        }
-
-        public void Spawn()
-        {
-            DecorationSpawner.Instance.SpawnDecoration(decorationToSpawnId);
         }
         
     }
