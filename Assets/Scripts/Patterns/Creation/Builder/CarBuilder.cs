@@ -46,9 +46,13 @@ namespace Patterns.Creation.Builder
         
         public Car Build()
         {
-            GameObject carContainer = Object.Instantiate(new GameObject());
-            carContainer.gameObject.name = "Car";
-            
+            GameObject carContainer = new GameObject
+            {
+                gameObject =
+                {
+                    name = "Car"
+                }
+            };
             _car = carContainer.AddComponent<Car>();
             
             Chassis chassis = Object.Instantiate(_chassis, carContainer.transform);

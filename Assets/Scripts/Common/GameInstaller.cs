@@ -54,8 +54,10 @@ namespace Common
                 .WithTyre(tyre)
                 .Build();
 
-            GameObject playerContainer = Instantiate( new GameObject() );
-            playerContainer.name = "Player";
+            GameObject playerContainer = new GameObject
+            {
+                name = "Player"
+            };
             car.transform.SetParent(playerContainer.transform);
             
             Player player = playerContainer.AddComponent<Player>();
