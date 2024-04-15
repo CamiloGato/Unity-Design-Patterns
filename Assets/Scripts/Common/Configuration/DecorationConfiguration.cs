@@ -8,7 +8,8 @@ namespace Common.Configuration
     public class DecorationConfiguration : ScriptableObject
     {
         [SerializeField] private List<Decoration> decorations = new List<Decoration>();
-
+        public List<Decoration> Decorations => decorations;
+        
         public Decoration GetDecoration(Id id)
         {
             return decorations.Find( (decoration) => decoration.id == id );

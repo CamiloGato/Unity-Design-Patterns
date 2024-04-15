@@ -1,5 +1,4 @@
-﻿using System;
-using Common.Addons;
+﻿using Common.Addons;
 using Common.Configuration;
 using Common.Enemies;
 using Common.Playable;
@@ -83,7 +82,8 @@ namespace Common
 
         private void SpawnDecoration()
         {
-            DecorationFactory decorationFactory = new DecorationFactory(decorationConfiguration);
+            Transform decorationPoolTransform = new GameObject("Decoration Pool").transform;
+            DecorationFactory decorationFactory = new DecorationFactory(decorationConfiguration, decorationPoolTransform);
             DecorationSpawner.Instance.SetUpDecorationFactory(decorationFactory, time, decorationToSpawnId);
             DecorationSpawner.Instance.ChangeDecorationId(decorationToSpawnId);
             DecorationSpawner.Instance.StartSpawn();

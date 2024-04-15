@@ -8,30 +8,25 @@ namespace Patterns.Structure.ObjectPool
         private readonly RecycleObject _prefab;
         private readonly HashSet<RecycleObject> _instantiateObject;
         private Queue<RecycleObject> _recycleObjects;
-
+        private Transform _poolSpace;
+        
         public ObjectPool( RecycleObject prefab )
         {
             _prefab = prefab;
             _instantiateObject = new HashSet<RecycleObject>();
         }
 
-        public void Init(int numberOfInitialObjects)
+        public void Init(int numberOfInitialObjects, Transform poolSpace = null)
         {
             _recycleObjects = new Queue<RecycleObject>(numberOfInitialObjects);
-
+            _poolSpace = poolSpace;
+            
             for (int i = 0; i < numberOfInitialObjects; i++)
             {
                 RecycleObject instance = InstantiateNewInstance();
                 instance.gameObject.SetActive(false);
                 _recycleObjects.Enqueue(instance);
             }
-        }
-
-        private RecycleObject InstantiateNewInstance()
-        {
-            RecycleObject instance = Object.Instantiate(_prefab);
-            instance.Configure(this);
-            return instance;
         }
 
         public T Spawn<T>()
@@ -41,6 +36,13 @@ namespace Patterns.Structure.ObjectPool
             recycleObject.gameObject.SetActive(true);
             recycleObject.Init();
             return recycleObject.GetComponent<T>();
+        }
+
+        private RecycleObject InstantiateNewInstance()
+        {
+            RecycleObject instance = Object.Instantiate(_prefab, _poolSpace, true);
+            instance.Configure(this);
+            return instance;
         }
 
         private RecycleObject GetInstance()
@@ -61,9 +63,10 @@ namespace Patterns.Structure.ObjectPool
             if (!wasInstantiated)
                 Debug.LogWarning($"{gameObjectToRecycle.name} was not instantiated");
             
+            _recycleObjects.Enqueue(gameObjectToRecycle);
+            
             gameObjectToRecycle.gameObject.SetActive(false);
             gameObjectToRecycle.Release();
-            _recycleObjects.Enqueue(gameObjectToRecycle);
         }
         
     }
