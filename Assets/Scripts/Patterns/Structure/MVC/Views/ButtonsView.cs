@@ -10,10 +10,15 @@ namespace Patterns.Structure.MVC.Views
 
         public override void Initialize()
         {
-            pauseButton.gameObject.SetActive(true);
-            continueButton.gameObject.SetActive(true);
+            
         }
 
+        public void SetPause(bool isPaused)
+        {
+            pauseButton.gameObject.SetActive(!isPaused);
+            continueButton.gameObject.SetActive(isPaused);
+        }
+        
         public override void Close()
         {
             pauseButton.gameObject.SetActive(false);
