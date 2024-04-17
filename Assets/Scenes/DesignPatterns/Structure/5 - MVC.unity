@@ -1065,7 +1065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4b630441684f3da428791804ca88f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 0}
+  panel: {fileID: 1643349705}
   time: 2
 --- !u!114 &1643349708
 MonoBehaviour:
