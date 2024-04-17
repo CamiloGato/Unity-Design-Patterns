@@ -2,6 +2,7 @@
 using Common.Configuration;
 using Common.Enemies;
 using Common.Playable;
+using Patterns.Behaviour.Strategy;
 using Patterns.Creation.Builder;
 using Patterns.Creation.Factory;
 using Patterns.Creation.Singleton;
@@ -112,7 +113,8 @@ namespace Common
             
             Player player = playerContainer.AddComponent<Player>();
             IInput input = new UnityInput(horizontal, fire);
-            player.SetComponents(input,car);
+            IAttack attack = null;
+            player.SetComponents(input, attack, car);
             
         }
         
