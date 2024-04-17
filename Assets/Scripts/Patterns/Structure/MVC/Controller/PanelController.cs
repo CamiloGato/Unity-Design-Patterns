@@ -3,7 +3,7 @@ using Patterns.Structure.MVC.Views;
 
 namespace Patterns.Structure.MVC.Controller
 {
-    public class ButtonsController : BaseController<MenuModel, ButtonsView>
+    public class PanelController : BaseController<MenuModel, PanelView>
     {
         public override void Initialize()
         {

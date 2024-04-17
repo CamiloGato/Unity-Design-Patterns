@@ -13,10 +13,11 @@ namespace Patterns.Structure.MVC.Views
         {
             panel.gameObject.SetActive(true);
         }
+        
 
         public void SetPause(bool isPaused)
         {
-            float percent = (isPaused) ? 0 : 1;
+            float percent = (isPaused) ? 1 : 0;
             panel.DOFade(percent, time);
         }
         

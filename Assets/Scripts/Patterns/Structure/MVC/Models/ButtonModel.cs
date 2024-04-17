@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace Patterns.Structure.MVC.Models
 {
-    [CreateAssetMenu(menuName = "Models/Button", fileName = "ButtonModel")]
-    public class ButtonModel : BaseModel
+    [CreateAssetMenu(menuName = "Models/Menu", fileName = "MenuModel")]
+    public class MenuModel : BaseModel
     {
         public string textData;
     }

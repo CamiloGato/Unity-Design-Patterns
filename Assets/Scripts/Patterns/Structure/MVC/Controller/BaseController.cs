@@ -15,10 +15,12 @@ namespace Patterns.Structure.MVC.Controller
         public virtual void Initialize()
         {
             baseView.Initialize();
+            baseView.Subscribe();
         }
 
         public virtual void Close()
         {
+            baseView.UnSubscribe();
             baseView.Close();
         }
     }
