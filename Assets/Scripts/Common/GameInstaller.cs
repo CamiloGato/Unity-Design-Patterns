@@ -4,6 +4,7 @@ using Common.Enemies;
 using Common.Playable;
 using Common.Weapons;
 using Patterns.Behaviour.Mediator;
+using Patterns.Behaviour.Observer;
 using Patterns.Behaviour.Strategy;
 using Patterns.Creation.Builder;
 using Patterns.Creation.Factory;
@@ -45,6 +46,7 @@ namespace Common
         [Header("Another Features")]
         [SerializeField] private Vector2 enemyDirection;
         [SerializeField] private Id bulletId;
+        [SerializeField] private ReactiveVariables variables;
 
         private Enemy _enemy;
         private HordeEnemyComposite _hordeEnemyComposite;
@@ -129,7 +131,9 @@ namespace Common
             Transform bulletPoolTransform = new GameObject("Bullet Pool").transform;
             BulletFactory bulletFactory = new BulletFactory(bulletConfiguration, bulletPoolTransform);
             IAttack attackBullet = new AttackBullet(playerContainerTransform, bulletFactory, bulletId, 2f);
-            player.SetComponents(input, attackBullet, carMediator);
+            player.SetComponents(input, attackBullet, carMediator, variables);
+            variables.Score = 0;
+            variables.Health = 4;
         }
         
     }
