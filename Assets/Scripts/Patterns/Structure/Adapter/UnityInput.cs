@@ -4,11 +4,13 @@ namespace Patterns.Structure.Adapter
     {
         private readonly string _horizontal;
         private readonly string _fire;
+        private readonly string _brake;
 
-        public UnityInput(string horizontal, string fire)
+        public UnityInput(string horizontal, string fire, string brake)
         {
             _horizontal = horizontal;
             _fire = fire;
+            _brake = brake;
         }
 
         public float Horizontal()
@@ -19,6 +21,11 @@ namespace Patterns.Structure.Adapter
         public bool Fire()
         {
             return UnityEngine.Input.GetButton(_fire);
+        }
+
+        public bool Brake()
+        {
+            return UnityEngine.Input.GetButton(_brake);
         }
     }
 }

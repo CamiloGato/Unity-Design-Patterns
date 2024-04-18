@@ -4,5 +4,6 @@ namespace Patterns.Structure.Adapter
     {
         float Horizontal();
         bool Fire();
+        bool Brake();
     }
 }

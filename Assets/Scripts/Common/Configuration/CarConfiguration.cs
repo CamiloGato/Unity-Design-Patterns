@@ -9,6 +9,7 @@ namespace Common.Configuration
     {
         [SerializeField] private List<Chassis> chassis;
         [SerializeField] private List<Tyre> tyres;
+        [SerializeField] private List<CarLight> lights;
 
         public Chassis GetChassis(Id id)
         {
@@ -20,5 +21,9 @@ namespace Common.Configuration
             return tyres.Find(tyre => tyre.id == id);
         }
 
+        public CarLight GetLight(Id id)
+        {
+            return lights.Find(light => light.id == id);
+        }
     }
 }

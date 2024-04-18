@@ -3,6 +3,7 @@ using Common.Configuration;
 using Common.Enemies;
 using Common.Playable;
 using Common.Weapons;
+using Patterns.Behaviour.Mediator;
 using Patterns.Behaviour.Strategy;
 using Patterns.Creation.Builder;
 using Patterns.Creation.Factory;
@@ -34,10 +35,12 @@ namespace Common
         [SerializeField] private Id tyreId;
         [SerializeField] private Id addonCapeId;
         [SerializeField] private Id addonHatId;
+        [SerializeField] private Id carLightId;
 
         [Header("Input")]
         [SerializeField] private string horizontal;
         [SerializeField] private string fire;
+        [SerializeField] private string brake;
 
         [Header("Another Features")]
         [SerializeField] private Vector2 enemyDirection;
@@ -99,13 +102,15 @@ namespace Common
             Hat hat = addonConfiguration.GetAddon<Hat>(addonHatId);
             Tyre tyre = carConfiguration.GetTyre(tyreId);
             Chassis chassis = carConfiguration.GetChassis(chassisId);
+            CarLight carLight = carConfiguration.GetLight(carLightId);
             
-            Car car = new CarBuilder()
+            CarMediator carMediator = new CarBuilder()
                 .SetPosition(position)
                 .WithCape(cape)
                 .WithHat(hat)
                 .WithChassis(chassis)
                 .WithTyre(tyre)
+                .WithLights(carLight)
                 .Build();
 
             GameObject playerContainer = new GameObject
@@ -114,15 +119,17 @@ namespace Common
             };
             Transform playerContainerTransform = playerContainer.transform;
             
-            car.transform.SetParent(playerContainerTransform);
-            
+            carMediator.transform.SetParent(playerContainerTransform);
+
+            Rigidbody2D playerRigidBody2D = playerContainer.AddComponent<Rigidbody2D>();
+            playerRigidBody2D.gravityScale = 0;
             Player player = playerContainer.AddComponent<Player>();
-            IInput input = new UnityInput(horizontal, fire);
+            IInput input = new UnityInput(horizontal, fire, brake);
             // IAttack attackSimple = new AttackSimple(playerContainerTransform, 2f);
             Transform bulletPoolTransform = new GameObject("Bullet Pool").transform;
             BulletFactory bulletFactory = new BulletFactory(bulletConfiguration, bulletPoolTransform);
             IAttack attackBullet = new AttackBullet(playerContainerTransform, bulletFactory, bulletId, 2f);
-            player.SetComponents(input, attackBullet, car);
+            player.SetComponents(input, attackBullet, carMediator);
         }
         
     }

@@ -16,3 +16,5 @@ MonoBehaviour:
   - {fileID: 3063889817986232637, guid: 7733878e671918f48bdc074acf86d2a5, type: 3}
   tyres:
   - {fileID: 1034682740224201101, guid: 601d1de52117858468965550d6f54bbc, type: 3}
+  lights:
+  - {fileID: 2265586155684396364, guid: 1fa441eee1a86e641abfce22309e83b6, type: 3}

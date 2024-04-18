@@ -1,17 +1,19 @@
 ﻿using System.Collections.Generic;
 using Common.Addons;
 using Common.Playable;
+using Patterns.Behaviour.Mediator;
 using UnityEngine;
 
 namespace Patterns.Creation.Builder
 {
     public class CarBuilder
     {
-        private Cape _cape;
         private Chassis _chassis;
+        private Cape _cape;
         private Hat _hat;
         private Tyre _tyre;
-        private Car _car;
+        private CarLight _carLight;
+        private CarMediator _carMediator;
         private Vector2 _position;
 
         public CarBuilder WithTyre(Tyre tyre)
@@ -38,13 +40,19 @@ namespace Patterns.Creation.Builder
             return this;
         }
 
+        public CarBuilder WithLights(CarLight light)
+        {
+            _carLight = light;
+            return this;
+        }
+
         public CarBuilder SetPosition(Vector2 position)
         {
             _position = position;
             return this;
         }
         
-        public Car Build()
+        public CarMediator Build()
         {
             GameObject carContainer = new GameObject
             {
@@ -53,7 +61,7 @@ namespace Patterns.Creation.Builder
                     name = "Car"
                 }
             };
-            _car = carContainer.AddComponent<Car>();
+            _carMediator = carContainer.AddComponent<CarMediator>();
             
             Chassis chassis = Object.Instantiate(_chassis, carContainer.transform);
             List<Tyre> tyres = new List<Tyre>();
@@ -72,11 +80,14 @@ namespace Patterns.Creation.Builder
             {
                 tyres.Add(Object.Instantiate(_tyre, tyresPosition[i]));
             }
+
+            Transform carLightPosition = chassis.CarLight;
+            CarLight carLight = Object.Instantiate(_carLight, carLightPosition);
             
-            _car.SetComponents(addons, tyres, chassis);
-            _car.gameObject.transform.position = _position;
+            _carMediator.SetComponents(addons, tyres, chassis, carLight);
+            _carMediator.gameObject.transform.position = _position;
             
-            return _car;
+            return _carMediator;
         }
         
     }

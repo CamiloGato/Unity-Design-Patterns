@@ -27,6 +27,7 @@ namespace Common.Weapons
         
         public override void Init()
         {
+            _initPosition = _transform.position;
             _rigidBody2D.velocity = _transform.right;
         }
 
