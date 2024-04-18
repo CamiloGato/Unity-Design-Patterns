@@ -52,7 +52,7 @@ namespace Patterns.Structure.ObjectPool
                 return _recycleObjects.Dequeue();
             }
 
-            Debug.LogWarning($"$Not enough recycled objects for {_prefab.name}");
+            Debug.LogWarning($"Not enough recycled objects for {_prefab.name}");
             RecycleObject instance = InstantiateNewInstance();
             return instance;
         }
