@@ -2,6 +2,7 @@
 using Common.Configuration;
 using Common.Enemies;
 using Common.Playable;
+using Common.Weapons;
 using Patterns.Behaviour.Strategy;
 using Patterns.Creation.Builder;
 using Patterns.Creation.Factory;
@@ -19,6 +20,7 @@ namespace Common
         [SerializeField] private EnemyConfiguration enemyConfiguration;
         [SerializeField] private AddonConfiguration addonConfiguration;
         [SerializeField] private CarConfiguration carConfiguration;
+        [SerializeField] private BulletConfiguration bulletConfiguration;
 
         [Header("Spawns")]
         [SerializeField] private float time;
@@ -39,6 +41,7 @@ namespace Common
 
         [Header("Another Features")]
         [SerializeField] private Vector2 enemyDirection;
+        [SerializeField] private Id bulletId;
 
         private Enemy _enemy;
         private HordeEnemyComposite _hordeEnemyComposite;
@@ -109,13 +112,17 @@ namespace Common
             {
                 name = "Player"
             };
-            car.transform.SetParent(playerContainer.transform);
+            Transform playerContainerTransform = playerContainer.transform;
+            
+            car.transform.SetParent(playerContainerTransform);
             
             Player player = playerContainer.AddComponent<Player>();
             IInput input = new UnityInput(horizontal, fire);
-            IAttack attack = null;
-            player.SetComponents(input, attack, car);
-            
+            IAttack attackSimple = new AttackSimple(playerContainerTransform, 2f);
+            Transform bulletPoolTransform = new GameObject("Bullet Pool").transform;
+            BulletFactory bulletFactory = new BulletFactory(bulletConfiguration, bulletPoolTransform);
+            IAttack attackBullet = new AttackBullet(playerContainerTransform, bulletFactory, bulletId, 2f);
+            player.SetComponents(input, attackBullet, car);
         }
         
     }

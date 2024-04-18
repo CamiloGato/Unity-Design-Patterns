@@ -224,6 +224,7 @@ MonoBehaviour:
   enemyConfiguration: {fileID: 11400000, guid: 66e13ea9c8122c14a96eeaae5e3956fb, type: 2}
   addonConfiguration: {fileID: 11400000, guid: 3a2f68f690a10764c956a72270d7d012, type: 2}
   carConfiguration: {fileID: 11400000, guid: 7445e6a9c44ca774a9a34d3914a2e59a, type: 2}
+  bulletConfiguration: {fileID: 11400000, guid: ced23d471118859408e4849ba5b2ce9a, type: 2}
   time: 3
   decorationToSpawnId: {fileID: 11400000, guid: 60b56615dca455f47a5b7a9d99e41e32, type: 2}
   enemyToSpawnId: {fileID: 11400000, guid: ee56b6cf4dd714b4eb49dca22f9a7680, type: 2}
@@ -236,6 +237,7 @@ MonoBehaviour:
   horizontal: Horizontal
   fire: Vertical
   enemyDirection: {x: 1, y: 1}
+  bulletId: {fileID: 11400000, guid: b8faa12ca55645a409938183830c99a3, type: 2}
 --- !u!4 &529949045
 Transform:
   m_ObjectHideFlags: 0
