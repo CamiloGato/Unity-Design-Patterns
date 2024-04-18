@@ -5,11 +5,6 @@ namespace Patterns.Structure.MVC.Controller
 {
     public class PanelController : BaseController<MenuModel, PanelView>
     {
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
-
         public void Pause()
         {
             baseView.SetPause(true);
@@ -18,11 +13,6 @@ namespace Patterns.Structure.MVC.Controller
         public void Continue()
         {
             baseView.SetPause(false);
-        }
-        
-        public override void Close()
-        {
-            base.Close();
         }
     }
 }

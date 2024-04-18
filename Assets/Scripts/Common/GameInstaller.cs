@@ -118,7 +118,7 @@ namespace Common
             
             Player player = playerContainer.AddComponent<Player>();
             IInput input = new UnityInput(horizontal, fire);
-            IAttack attackSimple = new AttackSimple(playerContainerTransform, 2f);
+            // IAttack attackSimple = new AttackSimple(playerContainerTransform, 2f);
             Transform bulletPoolTransform = new GameObject("Bullet Pool").transform;
             BulletFactory bulletFactory = new BulletFactory(bulletConfiguration, bulletPoolTransform);
             IAttack attackBullet = new AttackBullet(playerContainerTransform, bulletFactory, bulletId, 2f);

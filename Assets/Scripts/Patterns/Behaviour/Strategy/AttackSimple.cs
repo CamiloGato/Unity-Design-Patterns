@@ -19,7 +19,7 @@ namespace Patterns.Behaviour.Strategy
             Vector2 position = (Vector2) _origin.position + direction * _radius;
             float angle = Vector2.Angle(Vector2.right, position);
             Collider2D[] results = new Collider2D[5];
-            int size = Physics2D.OverlapBoxNonAlloc
+            Physics2D.OverlapBoxNonAlloc
             (
                 position,
                 new Vector2(1, 1),

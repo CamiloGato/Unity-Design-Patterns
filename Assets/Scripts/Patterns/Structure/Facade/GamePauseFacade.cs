@@ -1,4 +1,3 @@
-using System;
 using Patterns.Creation.Singleton;
 using Patterns.Structure.MVC.Controller;
 using UnityEngine;

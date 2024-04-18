@@ -1,4 +1,3 @@
-using System;
 using Patterns.Behaviour.Strategy;
 using Patterns.Structure.Adapter;
 using UnityEngine;
