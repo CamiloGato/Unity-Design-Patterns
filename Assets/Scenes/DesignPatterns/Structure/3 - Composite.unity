@@ -224,6 +224,7 @@ MonoBehaviour:
   enemyConfiguration: {fileID: 11400000, guid: 66e13ea9c8122c14a96eeaae5e3956fb, type: 2}
   addonConfiguration: {fileID: 11400000, guid: 3a2f68f690a10764c956a72270d7d012, type: 2}
   carConfiguration: {fileID: 11400000, guid: 7445e6a9c44ca774a9a34d3914a2e59a, type: 2}
+  bulletConfiguration: {fileID: 0}
   time: 3
   decorationToSpawnId: {fileID: 11400000, guid: 60b56615dca455f47a5b7a9d99e41e32, type: 2}
   enemyToSpawnId: {fileID: 11400000, guid: ee56b6cf4dd714b4eb49dca22f9a7680, type: 2}
@@ -233,9 +234,13 @@ MonoBehaviour:
   tyreId: {fileID: 11400000, guid: 593ac0b4ea3e7a84b9931fccef6f981d, type: 2}
   addonCapeId: {fileID: 11400000, guid: 5123d5db5f8ee9b45ba39ce1a019da35, type: 2}
   addonHatId: {fileID: 11400000, guid: 6ac1d4745eee7954c8e873a31e5b6523, type: 2}
+  carLightId: {fileID: 0}
   horizontal: Horizontal
   fire: Vertical
+  brake: 
   enemyDirection: {x: 1, y: 1}
+  bulletId: {fileID: 0}
+  variables: {fileID: 0}
 --- !u!4 &529949045
 Transform:
   m_ObjectHideFlags: 0
@@ -381,7 +386,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 786393298}
-  - component: {fileID: 786393299}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -410,20 +414,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &786393299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 786393297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d26972c3da0b4658ae16c83d174ccca5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseButton: {fileID: 692649515}
-  resumeButton: {fileID: 987350909}
 --- !u!1 &848960160
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +426,6 @@ GameObject:
   - component: {fileID: 848960163}
   - component: {fileID: 848960162}
   - component: {fileID: 848960161}
-  - component: {fileID: 848960165}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -528,25 +517,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &848960165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848960160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8427af3b33740849aecc99f3951173c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gamePauseFacade: {fileID: 1476131338}
-  duration: 2
-  ignoreTimeScale: 1
-  pauseButton: {fileID: 692649514}
-  resumeButton: {fileID: 987350908}
-  pauseButtons: {fileID: 786393299}
-  pausePanel: {fileID: 1643349707}
 --- !u!1 &987350906
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,12 +903,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &1476131337
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,8 +938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb2be2a97104a4ea5ec47a431fee0a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseButtons: {fileID: 786393299}
-  pausePanel: {fileID: 1643349707}
+  buttonsController: {fileID: 0}
+  panelController: {fileID: 0}
 --- !u!4 &1476131339
 Transform:
   m_ObjectHideFlags: 0
@@ -996,7 +966,6 @@ GameObject:
   - component: {fileID: 1643349704}
   - component: {fileID: 1643349706}
   - component: {fileID: 1643349705}
-  - component: {fileID: 1643349707}
   m_Layer: 5
   m_Name: PausePanel
   m_TagString: Untagged
@@ -1061,19 +1030,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643349703}
   m_CullTransparentMesh: 1
---- !u!114 &1643349707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1643349703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22be4b9e589a4c9bb54799bddc470e70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 1643349705}
 --- !u!1 &2068505644
 GameObject:
   m_ObjectHideFlags: 0
