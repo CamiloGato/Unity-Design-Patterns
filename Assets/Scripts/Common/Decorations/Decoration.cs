@@ -36,6 +36,7 @@ namespace Common.Decorations
 
         public void Die()
         {
+            Recycle();
             EnemyDeathsCounter.Instance.AddDeath();
         }
         

@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using Patterns.Behaviour.Mediator;
 using Patterns.Behaviour.Observer;
 using Patterns.Behaviour.Strategy;
 using Patterns.Structure.Adapter;
 using UnityEngine;
+using MEC;
 
 namespace Common.Playable
 {
@@ -16,6 +18,8 @@ namespace Common.Playable
         private Camera _mainCamera;
         private Rigidbody2D _rigidBody2D;
 
+        private bool _canFire;
+        
         public void SetComponents(IInput input, IAttack attack, CarMediator carMediator, ReactiveVariables variables)
         {
             _input = input;
@@ -24,17 +28,15 @@ namespace Common.Playable
             _variables = variables;
             _mainCamera = Camera.main;
             _rigidBody2D = GetComponent<Rigidbody2D>();
+
+            _canFire = true;
         }
 
         private void Update()
         {
-            if (_input.Fire())
+            if (_input.Fire() && _canFire)
             {
-                Vector2 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 direction = mousePosition - (Vector2) transform.position;
-                direction.Normalize();
-                _attack.Attack(direction);
-                _variables.Score += 2;
+                Timing.RunCoroutine(_FireEnumerator());
             }
 
             if (_input.Brake())
@@ -50,6 +52,21 @@ namespace Common.Playable
                 _rigidBody2D.AddForce(Vector2.right * horizontal, ForceMode2D.Force);
                 _carMediator.Move();
             }
+        }
+
+        private IEnumerator<float> _FireEnumerator()
+        {
+            _canFire = false;
+            
+            Vector2 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction = mousePosition - (Vector2) transform.position;
+            direction.Normalize();
+            _attack.Attack(direction);
+            _variables.Score += 2;
+
+            yield return Timing.WaitForSeconds(1.5f);
+
+            _canFire = true;
         }
     }
 }

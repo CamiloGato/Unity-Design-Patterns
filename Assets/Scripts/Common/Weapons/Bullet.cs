@@ -1,4 +1,3 @@
-using System;
 using Common.Configuration;
 using Common.Decorations;
 using Patterns.Structure.ObjectPool;
@@ -10,6 +9,7 @@ namespace Common.Weapons
     public class Bullet : RecycleObject
     {
         public Id id;
+        [SerializeField] private float speed;
         
         private Rigidbody2D _rigidBody2D;
         private Transform _transform;
@@ -35,12 +35,11 @@ namespace Common.Weapons
             }
             Recycle();
         }
-
-
+        
         public override void Init()
         {
             _initPosition = _transform.position;
-            _rigidBody2D.velocity = _transform.right;
+            _rigidBody2D.velocity = _transform.right * speed;
         }
 
         public override void Release() {}

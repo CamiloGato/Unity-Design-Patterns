@@ -22,6 +22,7 @@ namespace Common.Achievements
             {
                 AchievementEventData eventData = new AchievementEventData("Major death!");
                 EventQueue.Instance.EnqueueEvent(eventData);
+                _deaths = 0;
             }
         }
 
