@@ -1,4 +1,6 @@
+using System;
 using Common.Configuration;
+using Common.Decorations;
 using Patterns.Structure.ObjectPool;
 using UnityEngine;
 
@@ -24,7 +26,17 @@ namespace Common.Weapons
             if (Vector2.Distance(_initPosition, _transform.position) > 3f)
                 Recycle();
         }
-        
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.TryGetComponent(out Decoration decoration))
+            {
+                decoration.Die();
+            }
+            Recycle();
+        }
+
+
         public override void Init()
         {
             _initPosition = _transform.position;

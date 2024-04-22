@@ -1,4 +1,5 @@
-﻿using Common.Configuration;
+﻿using Common.Achievements;
+using Common.Configuration;
 using Patterns.Structure.ObjectPool;
 using UnityEngine;
 
@@ -33,6 +34,11 @@ namespace Common.Decorations
                 Recycle();
         }
 
+        public void Die()
+        {
+            EnemyDeathsCounter.Instance.AddDeath();
+        }
+        
         public override void Release()
         {
             

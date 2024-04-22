@@ -12,9 +12,9 @@ namespace Common.Playable
         private IInput _input;
         private IAttack _attack;
         private CarMediator _carMediator;
+        private ReactiveVariables _variables;
         private Camera _mainCamera;
         private Rigidbody2D _rigidBody2D;
-        private ReactiveVariables _variables;
 
         public void SetComponents(IInput input, IAttack attack, CarMediator carMediator, ReactiveVariables variables)
         {
