@@ -33,7 +33,7 @@ namespace Patterns.Behaviour.Strategy
                 
                 if (result.TryGetComponent(out Decoration decoration))
                 {
-                    decoration.Recycle();
+                    decoration.Die();
                 }
             }
         }
