@@ -49,10 +49,10 @@ namespace Patterns.Behaviour.EventQueue
             switch (eventData.EventId)
             {
                 case EventIds.EnemyDeaths:
-                    EnemyDeathsCounter.Instance.ShowAchievementDeaths(eventData as EnemyDeathsEventData);
+                    // EnemyDeathsCounter.Instance.ShowAchievementDeaths(eventData as DeathsEventData);
                     break;
                 case EventIds.AchievementUnlocked:
-                    AchievementsManager.Instance.ShowAchievement(eventData as AchievementEventData);
+                    // AchievementsManager.Instance.ShowAchievement(eventData as AchievementEventData);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

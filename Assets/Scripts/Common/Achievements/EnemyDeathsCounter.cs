@@ -26,7 +26,7 @@ namespace Common.Achievements
             }
         }
 
-        public void ShowAchievementDeaths(EnemyDeathsEventData data)
+        public void ShowAchievementDeaths(DeathsEventData data)
         {
             Debug.Log($"Unlock Total Deaths: {data?.AmountDeaths}");
         }

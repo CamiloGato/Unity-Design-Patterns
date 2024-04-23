@@ -17,11 +17,11 @@ namespace Patterns.Behaviour.EventQueue
         }
     }
 
-    public class EnemyDeathsEventData : EventData
+    public class DeathsEventData : EventData
     {
         public readonly int AmountDeaths;
         
-        public EnemyDeathsEventData(int amountDeaths) : base(EventIds.EnemyDeaths)
+        public DeathsEventData(int amountDeaths) : base(EventIds.EnemyDeaths)
         {
             AmountDeaths = amountDeaths;
         }
